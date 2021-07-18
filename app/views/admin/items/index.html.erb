@@ -1,2 +1,37 @@
 <%= render 'admin/items/header' %>
 <h1>商品一覧</h1>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+
+  <table class="table table-hover table-inverse">
+
+  <thead>
+    <tr>
+    <th>商品ID</th>
+    <th>商品名</th>
+    <th>税抜価格</th>
+    <th>ジャンル</th>
+    <th>ステータス</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+<% @items.each do |item| %>
+<tr>
+  <td><%=item.id %></td>
+  <td> <%= link_to item.name, admin_item_path(item.id) %></td>
+  <td><%=item.price %></td>
+  <td><%=item.genre_id %></td>
+  <td></td>
+</tr>
+<% end %>
+
+</tbody>
+
+</table>
+
+</div>
+</div>
+</div>
