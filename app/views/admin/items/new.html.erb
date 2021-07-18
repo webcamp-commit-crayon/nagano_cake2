@@ -1,0 +1,30 @@
+<%= render 'admin/items/header' %>
+<div>
+  <h3>商品新規登録</h3>
+  <%= form_with model: @item, url: admin_items_path, method: :post, local:true do |f| %>
+  <p>商品画像</p>
+  <%= f.attachment_field :image %>
+  <p>商品名</p>
+  <%= f.text_field :name %>
+  <p>商品説明</p>
+  <%= f.text_area :introduction %>
+  <p>ジャンル</p>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
+
+  <div class="from-inline">
+    <p>税抜き価格</p>
+    <%= f.text_field :price , placeholder:"1000" %>
+    <label>円</label>
+  </div>
+
+　 <div class="from-inline">
+    <p>販売ステータス</p>
+    <%= f.radio_button :is_active, "販売中" %>販売中
+    <%= f.radio_button :is_active, "販売停止中" %>販売停止中
+   </div>
+
+   <%= f.submit'新規投稿' %>
+
+    <% end %>
+
+</div>
