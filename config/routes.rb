@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   }
 
 
+  get '/about' => 'public/homes#about'
+  get '/admin' => 'admin/homes#top'
 
   resources :customers, only: [:show, :edit, :update] do
     member do
