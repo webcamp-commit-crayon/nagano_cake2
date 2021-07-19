@@ -10,7 +10,11 @@
   </head>
 
   <body>
+    <% if admin_signed_in? %>
+    <%= render 'admin/homes/header' %>
+    <% else %>
     <%= render 'public/homes/header' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
