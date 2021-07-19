@@ -4,6 +4,7 @@ class Admin::GenresController < ApplicationController
   end
 
   def edit
+    @genre = Genre.find(params[:id])
   end
 
   def create
@@ -13,10 +14,15 @@ class Admin::GenresController < ApplicationController
   end
 
   def update
+    if @genre.update(genre_params)
+      redirect_to admin_genre_path(@genre)
+    else
+    render "edit"
+    end
   end
 
   private
   def genre_params
-    params.permit(:name)
+    params.require(:genre).permit(:name)
   end
 end
