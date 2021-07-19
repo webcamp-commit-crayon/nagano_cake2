@@ -1,8 +1,8 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <h2><%=@customer.last_name %><%=@customer.first_name %>さんの詳細ページ</h2>
-    <%= form_with model:@customer, local:true do |f| %>
+    <h2><%=@customer.last_name %><%=@customer.first_name %>さんの会員情報編集</h2>
+    <%= form_with model:@customer, url: admin_customer_path(@customer),local:true do |f| %>
      <div class="form-group">
         <%= f.label :"会員ID" %>
         <%=@customer.id %>
@@ -35,7 +35,8 @@
       </div>
       <div class="form-group">
         <%= f.label :"会員ステータス" %>
-        <%= f.text_area :email, class: "form-control email"%>
+        <%= f.radio_button :is_deleted,false,checked: !@customer.is_deleted %>有効
+        <%= f.radio_button :is_deleted,true,checked: @customer.is_deleted %>退会
       </div>
       <div class="form-group">
         <%= f.submit class: 'btn btn-secondary' %>
