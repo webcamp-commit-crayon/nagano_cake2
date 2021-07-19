@@ -3,7 +3,7 @@
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
     <h2>商品編集</h2>
-    <%= form_with model:@item, local:true do |f| %>
+    <%= form_with model:@item, url: admin_item_path(@item), method: :patch,local:true do |f| %>
      <div class="form-group">
         <%= f.label :"商品画像" %>
         <%= f.attachment_field :image, class: "form-control-file user_image" %>
@@ -26,8 +26,8 @@
       </div>
       <div class="form-group">
         <%= f.label :"販売ステータス" %>
-        <%= f.radio_button :is_active, "販売中" %>販売中
-    　　　<%= f.radio_button :is_active, "販売停止中" %>販売停止中
+        <%= f.radio_button :is_active,true,checked: @item.is_active %>販売中
+        <%= f.radio_button :is_active,false,checked: !@item.is_active %>販売中止
       </div>
       <div class="form-group">
         <%= f.submit class: 'btn btn-secondary' %>
