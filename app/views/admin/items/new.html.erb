@@ -11,15 +11,16 @@
   <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" %>
 
   <div class="from-inline">
-    <p>税抜き価格</p>
+    <p>税抜価格</p>
     <%= f.text_field :price , placeholder:"1000" %>
     <label>円</label>
   </div>
 
-    
-    <%= f.radio_button :is_active, {販売中:false} %>
-    <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %>
-
+  <div class="from-inline">
+    <p>販売ステータス</p>
+        <%= f.radio_button :is_active,true,checked: true %>販売中
+        <%= f.radio_button :is_active,false %>販売中止
+  </div>
 
 
    <%= f.submit'新規投稿' %>
