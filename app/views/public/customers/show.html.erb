@@ -1,20 +1,33 @@
 <div class="container">
 <h3>マイページ</h3>
 登録情報<%= link_to '編集する', edit_customer_path(@customer) %>
-<div class="row no-gutters">
-    <div class="col-12 col-sm-6 col-md-8">氏名</div>
-    <div class="col-6 col-md-4"><%= @customer.last_name %><%= @customer.first_name %></div>
-    <div class="col-12 col-sm-6 col-md-8">カナ</div>
-    <div class="col-6 col-md-4"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></div>
-    <div class="col-12 col-sm-6 col-md-8">郵便番号</div>
-    <div class="col-6 col-md-4"><%= @customer.postal_code %></div>
-    <div class="col-12 col-sm-6 col-md-8">住所住所</div>
-    <div class="col-6 col-md-4"><%= @customer.address %></div>
-    <div class="col-12 col-sm-6 col-md-8">電話番号</div>
-    <div class="col-6 col-md-4"><%= @customer.phone_number %></div>
-    <div class="col-12 col-sm-6 col-md-8">メールアドレス</div>
-    <div class="col-6 col-md-4"><%= @customer.email %></div>
-  </div>
-</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th><div class="col-12 col-sm-6 col-md-8">氏名</div></th>
+      <th><div class="col-6 col-md-4"><%= @customer.last_name %><%= @customer.first_name %></div></th>
+    </tr>
+    <tr>
+      <th><div class="col-12 col-sm-6 col-md-8">カナ</div></th>
+      <th><div class="col-6 col-md-4"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></div></th>
+    </tr>
+    <tr>
+      <th><div class="col-12 col-sm-6 col-md-8">郵便番号</div></th>
+      <th><div class="col-6 col-md-4"><%= @customer.postal_code %></div></th>
+    </tr>
+    <tr>
+      <th><div class="col-12 col-sm-6 col-md-8">住所</div></th>
+      <th><div class="col-6 col-md-4"><%= @customer.address %></div></th>
+    </tr>
+    <tr>
+      <th><div class="col-12 col-sm-6 col-md-8">電話番号</div></th>
+      <th><div class="col-6 col-md-4"><%= @customer.phone_number %></div></th>
+    </tr>
+    <tr>
+      <th><div class="col-12 col-sm-6 col-md-8">メールアドレス</div></th>
+      <th><div class="col-6 col-md-4"><%= @customer.email %></th>
+    </tr>
+  </thead>
+</table>
 
 </div>
