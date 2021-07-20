@@ -18,9 +18,12 @@ class Public::AddressesController < ApplicationController
     
     def update
         @address = Address.find(params[:id])
-        address.customer_id = current_cusutomer.id
-        address.update(address_params)
-        redirect_to addresses_path
+        @address.customer_id = current_customer.id
+        if @address.update(address_params)
+          redirect_to addresses_path, notice: "You have updated user successfully."
+        else
+           render "edit"
+        end
     end
     
     def destroy
