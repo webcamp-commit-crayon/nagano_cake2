@@ -1,4 +1,9 @@
+
 <h1>商品一覧</h1>
+
+<%= link_to new_admin_item_path do %>
+  <i class="fas fa-plus-circle"></i>
+<% end %>
 
 <div class="container px-5 px-sm-0">
   <div class="row">
@@ -21,7 +26,7 @@
 <tr>
   <td><%=item.id %></td>
   <td> <%= link_to item.name, admin_item_path(item.id) %></td>
-  <td><%=item.price %></td>
+  <td>¥<%= item.price.to_s(:delimited, delimiter: ',') %></td>
   <td><%=item.genre.name %></td>
   <td><% if item.is_active %>
 　　販売中

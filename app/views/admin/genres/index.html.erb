@@ -5,18 +5,18 @@
   <%= f.submit'新規投稿' %>
 <% end %>
 
-       <table>
-            <thead>
-               <tr>
-                <th></th><th>ジャンル</th>
-               </tr>
-            </thead>
-            <tbody>
-            　<% @genres.each do |genre| %>
-               <tr>
-                 <td><%= genre.name %></td>
-                 <td><%= link_to "編集する", edit_admin_genre_path(genre) %></td>
-               </tr>
-              <% end %>
-            </tbody>
-           </table>
+<table>
+    <thead>
+       <tr>
+        <th></th><th>ジャンル</th>
+       </tr>
+    </thead>
+    <tbody>
+    　<% @genres.each do |genre| %>
+       <tr>
+         <td><%= genre.name %></td>
+         <td><%= link_to "編集する", edit_admin_genre_path(genre) %></td>
+       </tr>
+      <% end %>
+    </tbody>
+</table>
