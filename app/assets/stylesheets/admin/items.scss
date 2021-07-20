@@ -20,3 +20,18 @@
   color         : #00b300;
   background    : #ffffff;
 }
+
+.social i {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.item {
+  position: relative;
+}
+
+.social {
+  position: absolute;
+  top: 120px;
+  right: 280px; 
+}

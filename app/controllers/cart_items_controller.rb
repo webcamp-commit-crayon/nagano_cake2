@@ -1,4 +1,5 @@
 class CartItemsController < ApplicationController
+	before_action :authenticate_customer!
   def index
     @cart_items = current_customer.cart_items
   end
@@ -19,6 +20,6 @@ class CartItemsController < ApplicationController
     end
     redirect_to items_path
   end
-  
-  
+
+
 end
