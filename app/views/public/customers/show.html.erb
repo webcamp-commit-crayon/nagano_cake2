@@ -1,5 +1,6 @@
 <div class="container">
 <h3>マイページ</h3>
+登録情報<%= link_to '編集する', edit_customer_path(@customer) %>
 <div class="row no-gutters">
     <div class="col-12 col-sm-6 col-md-8">氏名</div>
     <div class="col-6 col-md-4"><%= @customer.last_name %><%= @customer.first_name %></div>
