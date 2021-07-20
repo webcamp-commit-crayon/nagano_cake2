@@ -24,16 +24,12 @@
      <th>税込価格
      <p>（税別価格）</p>
      </th>
-     <th> <%= convert_to_taxed(@item.price) %>(<%= @item.price %>)円</th>
+     <th>¥<%= convert_to_taxed(@item.price).to_s(:delimited, delimiter: ',') %><br>
+     (¥<%= @item.price.to_s(:delimited, delimiter: ',') %>)</th>
     </tr>
      <tr>
      <th>販売ステータス</th>
-     <th>
-　　<% if @item.is_active %>
-　　販売中
-　　<% else %>
-　　販売中止
-　　<% end %>
+     <th><% if @item.is_active %>販売中<% else %>販売中止<% end %>
 　　 </th>
     </tr>
   </tbody>
