@@ -1,5 +1,6 @@
 class Admin::GenresController < ApplicationController
   def index
+    @genre=Genre.new
     @genres = Genre.all
   end
 
@@ -24,6 +25,6 @@ class Admin::GenresController < ApplicationController
 
   private
   def genre_params
-    params.permit(:name)
+    params.require(:genre).permit(:name)
   end
 end
