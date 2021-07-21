@@ -8,8 +8,8 @@ class Public::CartItemsController < ApplicationController
     if current_customer.cart_items.count >= 1
       if nil != current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
         @cart_item_u                  = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-        @cart_item_u.number_of_items += params[:cart_item][:number_of_items].to_i
-        @cart_item_u.update(amount: @cart_item_u.number_of_items)
+        @cart_item_u.amount += params[:cart_item][:amount].to_i
+        @cart_item_u.update(amount: @cart_item_u.amount)
         redirect_to cart_items_path
       else
         @cart_item           = CartItem.new(cart_item_params)
@@ -42,13 +42,13 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
-    @cart_item = CartItem.find_by(params[:id])
+    @cart_item = CartItem.find(params[:id])
     @cart_item.update(cart_item_params)
     redirect_to cart_items_path
   end
 
   def destroy
-    @cart_item = CartItem.find_by(params[:id])
+    @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
     redirect_to cart_items_path
   end
