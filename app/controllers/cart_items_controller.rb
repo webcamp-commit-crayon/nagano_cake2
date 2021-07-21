@@ -1,4 +1,5 @@
 class CartItemsController < ApplicationController
+	before_action :authenticate_customer!
   def index
     @cart_items = current_member.cart_items
     @total      = 0
@@ -37,6 +38,7 @@ class CartItemsController < ApplicationController
       end
     end
   end
+
 
   def update
     @cart_item = CartItem.find_by(params[:id])
