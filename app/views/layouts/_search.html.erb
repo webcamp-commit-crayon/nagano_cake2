@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-top: 25px;">
+      <%= form_with url:search_path, method: :get, local: true do |f| %>
+        <%= f.text_field 'search[value]' %>
+         <%= f.select :model, options_for_select({"商品名" => "item" }) %>
+        <%= f.submit :"検索" %>
+    <% end %>
+  </div>
+</div>
