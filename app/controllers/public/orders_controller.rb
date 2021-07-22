@@ -22,9 +22,9 @@ class Public::OrdersController < ApplicationController
     def create
         session[:customer] = Order.new()
         
-       if params[:payment_select] == "0"
+       if params[:payment_select] == "クレジットカード"
          session[:customer][:payment_method] = 0
-       elsif params[:payment_select] == "1"
+       elsif params[:payment_select] == "銀行振込"
          session[:customer][:payment_method] = 1
        end
     
