@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   root :to => 'public/homes#top'
   get '/about' => 'public/homes#about'
   get '/admin' => 'admin/homes#top'
-  
 
-  
+  get '/search', to: 'searches#search'
+
+
   scope module: :public do
     resources :customers, only: [:show, :edit, :update] do
       member do
@@ -24,27 +25,27 @@ Rails.application.routes.draw do
         patch :withdraw
       end
     end
-    
+
     resources :items, only: [:index, :show]
-    
+
     resources :cart_items, only: [:index, :create, :update, :destroy] do
       member do
         delete :destroy_all
       end
     end
-    
+
     resources :orders, only: [:new, :show, :create, :index] do
       member do
         get :comfirm
         get :complete
       end
     end
-    
+
     resources :addresses, only: [:index, :edit, :create, :update,:destroy]
-    
+
   end
 
-  
+
 
   namespace:admin do
     resources :customers, only: [:index, :show, :edit, :update]
