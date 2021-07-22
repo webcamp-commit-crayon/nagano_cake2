@@ -8,7 +8,7 @@ class Public::CartItemsController < ApplicationController
     if current_customer.cart_items.count >= 1
       if nil != current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
         @cart_item_u                  = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
-        @cart_item_u.amount += params[:cart_item][:amount].to_i
+        @cart_item_u.amount          += params[:cart_item][:amount].to_i
         @cart_item_u.update(amount: @cart_item_u.amount)
         redirect_to cart_items_path
       else
@@ -32,11 +32,9 @@ class Public::CartItemsController < ApplicationController
       if @cart_item.save
         redirect_to cart_items_path
       else
-        @cart_items = current_customer.cart_items
-        @quantity   = Item.count
-        @genres     = Genre.where(valid_invalid_status: 0)
-        @total      = 0
-        render 'index'
+        flash[:notice] = '個数を入れてください'
+        @item          = Item.find(params[:cart_item][:item_id])
+        render 'public/items/show'
       end
     end
   end

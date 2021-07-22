@@ -44,8 +44,8 @@
         </tbody>
       </table>
       <div class="col-xs-5">
-        <strong class="error"><%= notice %></strong>
-          <%= form_with model: @cart_item, url: cart_items_path, local: true  do |f| %>
+          <strong class="error text-danger"><%= notice %></strong>
+          <%= form_with model: @cart_item,  required: true , local: true  do |f| %>
           <%= f.hidden_field :item_id  , :value => @item.id%>
           <%= f.number_field :amount , placeholder: "個数選択", min: 1, max: 20 %>
           <%= f.submit "カートに入れる" ,class: 'btn btn-primary' %>
