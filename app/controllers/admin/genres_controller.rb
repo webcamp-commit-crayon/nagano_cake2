@@ -1,8 +1,8 @@
 class Admin::GenresController < ApplicationController
   def index
-    @genre=Genre.new
+    @genre  = Genre.new
     @genres = Genre.all
-    @genre = Genre.new
+    @genre  = Genre.new
   end
 
   def edit
@@ -10,7 +10,7 @@ class Admin::GenresController < ApplicationController
   end
 
   def create
-    @genre = Genre.new(genre_params)
+    @genre  = Genre.new(genre_params)
     @genres = Genre.all
     if @genre.save
       flash[:info] = '登録に成功しました。'
