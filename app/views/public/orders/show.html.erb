@@ -4,26 +4,26 @@
         <div class="col-md-7">
             <table class="table table-striped">
                 <tr>注文情報</tr>
-                <tr><th>注文日</th><th><%= @order.create.at.strftime("%Y/%m/%d") %></th></tr>
-                <tr><td>配送先</td><td><%= @order.postal_code %>
-                <%= @order.name %>
-                <%= @order.address %></td></tr>
-                <tr><td>支払方法</td><td><%= @order.payment_method_i18n %></td></tr>
-                <tr><td>ステータス</td><td><%= @order.order_status_i18n %></td></tr>
+                <tr><th>注文日</th><th><%= @orders.created_at.strftime("%Y/%m/%d") %></th></tr>
+                <tr><td>配送先</td><td><%= @orders.postal_code %>
+                <%= @orders.name %>
+                <%= @orders.address %></td></tr>
+                <tr><td>支払方法</td><td><%= @orders.payment_method %></td></tr>
+                <tr><td>ステータス</td><td><%= @orders.status %></td></tr>
             </table>
         </div>
                 <div class="col-md-3">
                     <table class="table table-striped">
                         <tr>請求情報</tr>
                         <tr><th>商品合計</th>
-                            <th><%= @order.total_amount %></th>
+                            <th><%#= @orders.amount %></th>
                         </tr>
                         <tr><td>配送料</td>
-                            <td><%= @order.shipping_cost %></td>
+                            <td><%= @orders.shipping_cost %></td>
                         </tr>
                         <tr>
                             <td>ご請求額</td>
-                            <td><%= @order.total_payment %></td>
+                            <td><%= @orders.total_payment %></td>
                         </tr>
                     </table>
                 </div>
@@ -41,12 +41,12 @@
                 <th>小計</th>
             </tr>
             
-            <% @order.order_products.each do |t| %>
+            <% @order.order_details.each do |t| %>
             <tr>
-                <td><%= t.item.item_name %></td>
-                <td><%= t.tax_included %></td>
-                <td><%= t.amount %></td>
-                <td><%= t.total_payment * t.amount %></td>
+                <td><%= t.order.name %></td>
+                <td><%= t.order.total_payment %></td>
+                <td><%#= t.order.amount %></td>
+                <td><%#= t.total_payment * t.amount %></td>
             </tr>
             <% end %>
         </table>
