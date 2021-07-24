@@ -1,6 +1,6 @@
 <h1 class="text-center">注文情報入力</h1>
 <div class="mx-auto w-50 border rounded bg-white p-3">
-  <%= form_with(url: orders_path, method: :post, local: true) do |f| %>
+  <%= form_with(url: comfirm_orders_path, method: :post, local: true) do |f| %>
   <div class="form-group">
     <div class="field">
      <div class="lead"><span class="payment_method_engine">支払い方法</span></div>
@@ -16,7 +16,6 @@
   </div>
   
    <div class="lead"><span class="address_engine">お届け先</span></div>
-   <% if current_customer.address %>
      <div class="radio-inline">
       <%= f.radio_button :address_select, 0, checked: "checked" %>
       <%= f.label :ご自身の住所, class: "address_label" %><br>
@@ -47,7 +46,5 @@
   </div>
 
   <%= f.submit "購入確認へ", class:"btn btn-primary btn-block btn-base-1 mt-20" %>
-  
-  <% end %>
     <% end %>
 </div>
