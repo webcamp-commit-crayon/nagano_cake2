@@ -2,32 +2,35 @@
 <div class="mx-auto w-50 border rounded bg-white p-3">
   <%= form_with(url: orders_path, method: :post, local: true) do |f| %>
   <div class="form-group">
-    <div class="lead mb-2">支払い方法</div>
-    <%= f.radio_button :payment_select, 0 %>
-    クレジットカード　　
-    <%= f.radio_button :payment_select, 1 %>
-    銀行振込
+    <div class="field">
+     <div class="lead"><span class="payment_method_engine">支払い方法</span></div>
+     <div class="radio-inline">
+      <%= f.radio_button :payment_select, 1, checked: "checked" %>
+      クレジットカード
+  </div>
+  <div class="radio-inline">
+    <%= f.radio_button :payment_select, 2 %>
+    銀行淵込み
+  </div>
+  </div>
   </div>
   
-  <div class="form-group mt-4">
-    <div class="lead">お届け先</div>
-    <% if current_customer.address %>
-    <%= f.radio_button :address_select, 0 %>
-    <%= f.label :ご自身の住所 %>　　
-    <%= current_customer.address %><br>
-    <% end %>
-    
-  <div>
+   <div class="lead"><span class="address_engine">お届け先</span></div>
+   <% if current_customer.address %>
+     <div class="radio-inline">
+      <%= f.radio_button :address_select, 0, checked: "checked" %>
+      <%= f.label :ご自身の住所, class: "address_label" %><br>
+      〒<%= current_customer.postal_code %>　<%= current_customer.address %>
+  </div>
+  <div class="radio-inline">
     <%= f.radio_button :address_select, 1 %>
-    <%= f.label :登録済住所から選択 %><br>
-    <%= f.collection_select(:address_id, @addresses, :id, :address) %>
+      <%= f.label :登録先住所から選択, class: "address_label" %>
+      <%= f.collection_select(:address_id, @addresses, :id, :address) %>
   </div>
-  
-  <div>
-    <%= f.radio_button :address_select, 2 %>  新規住所登録
-  </div>
-  
-  <div class="form-group has-icon">
+  <div class="radio-inline">
+<%= f.radio_button :address_select, 2 %>
+      <%= f.label :新しい配送先登録, class: "address_label" %>
+      <div class="form-group has-icon">
     <%= f.label :"郵便番号(ハイフンなし)" %>
     <%= f.text_field :postal_code, class:"form-control" %>
   </div>
@@ -42,7 +45,9 @@
       <%= f.text_field :name, class:"form-control" %>
     </div>
   </div>
-  
+
   <%= f.submit "購入確認へ", class:"btn btn-primary btn-block btn-base-1 mt-20" %>
+  
   <% end %>
+    <% end %>
 </div>

@@ -6,7 +6,7 @@
     <% @cart_items.each do |cart_item| %>
       <div class="cartitem-area clearfix border-bottom border-dark p-3">
         <div class="cartitem-figure float-left" style="width:35%">
-          <%= attachment_image_tag cart_item.item, :image, format: 'jpeg', fallback: "ithigo.jpg", class: "img-fluid" %>
+          <%= attachment_image_tag cart_item.item, :image, format: 'jpeg', fallback: "", class: "img-fluid" %>
         </div>
         <div class="cartitem-description float-right" style="width:60%">
           <h4 class="cartitem-name p-3">
