@@ -35,8 +35,8 @@ Rails.application.routes.draw do
     end
 
     resources :orders, only: [:new, :show, :create, :index] do
-      member do
-        get :comfirm
+      collection do
+        post :comfirm
         get :complete
       end
     end
@@ -51,7 +51,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items, only: [:new, :create, :index, :show, :edit, :update]
     resources :genres, only: [:create, :index, :show, :edit, :update]
-    resources :orders, only: [:show, :update]
+    resources :orders, only: [:show]
     resources :order_details, only: [:update]
   end
 end

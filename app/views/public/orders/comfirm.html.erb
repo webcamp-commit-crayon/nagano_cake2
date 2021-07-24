@@ -3,23 +3,11 @@
 
 <div class="row">
   <div class="col-sm-9">
-    
-    <!--<div class="card-deck">
-    <% @cart_items.each do |cart_item| %>
-      <div class="card mb-3">
-        <%= attachment_image_tag cart_item.item, :image, format: 'jpeg', class: "bd-placeholder-img card-img-top", fallback: "ithigo.jpg" %>
-        <div class="card-body pb-2">
-          <h5 class="card-title"><%= cart_item.item.name %></h5>
-          <p class="card-text"><%= cart_item.item.price %>円</p>
-          <div>個数: <%= cart_item.amount %>点</div>
-        </div>
-      </div>
-    <% end %>
-    </div>-->
+ <%= form_with model: @cart_item, url: orders_path, local: true  do |f| %>
     <% @cart_items.each do |cart_item| %>
       <div class="cartitem-area clearfix border-bottom border-dark p-3">
         <div class="cartitem-figure float-left" style="width:35%">
-          <%= attachment_image_tag cart_item.item, :image, format: 'jpeg', fallback: "ithigo.jpg", class: "img-fluid" %>
+          <%= attachment_image_tag cart_item.item, :image, format: 'jpeg', fallback: "", class: "img-fluid" %>
         </div>
         <div class="cartitem-description float-right" style="width:60%">
           <h4 class="cartitem-name p-3">
@@ -41,9 +29,10 @@
       </div>
     <% end %>
     <h4 class="rounded mt-3 mb-3 p-2" style="background-color:#ddd;">お届け先</h4>
+    <p>お支払方法<%= session[:customer]["payment_method"] %></p>
     <p>〒<%= session[:customer]["postal_code"] %>
     　<%= session[:customer]["address"] %></p>
-    <p>宛名:<%= session[:customer]["name"] %></p>             
+    <p>宛名:<%= session[:customer]["name"] %></p>
   </div>
   <div class="col-sm-3">
     <div class="border border-secondary rounded bg-light p-3 mt-5">
@@ -57,10 +46,13 @@
           <td class="text-right"><%= @total %>円</td>
         </tr>
       </table>
-      <div class="border-top mt-3 pt-2 mb-1">支払方法<p class="text-right"><%= @payment_method %></p></div>
+      <div class="border-top mt-3 pt-2 mb-1">支払方法<p class="text-right"><%= session[:customer]["payment_method"] %></p></div>
       <div class="border-top mt-3 pt-2 mb-1">合計金額</div>
-      <h4 class="content-justify-end border-bottom pb-2 mb-4 text-danger">¥<%= @total+0 %></h4>
-      <%= link_to "購入確定", complete_order_path, class: "btn btn-primary mt-3" %>
+      <h4 class="content-justify-end border-bottom pb-2 mb-4 text-danger">¥<%= @total+500 %></h4>
+
+
+      <%= f.submit "購入確定", class: "btn btn-primary mt-3" %>
+      <% end %>
     </div>
   </div>
 </div>
