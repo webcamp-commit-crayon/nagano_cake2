@@ -12,17 +12,8 @@ class Public::OrdersController < ApplicationController
         total_amount = (cart_item.item.price * cart_item.amount*1.1).round
         @total += total_amount
       end
-      if session[:customer]["payment_method"] == "credit"
-        @payment_method = "クレジット払い"
-      elsif session[:customer]["payment_method"] == "bunk"
-        @payment_method = "現金払い"
-      end
-    end
-    
-    def create
-        session[:customer] = current_customer.orders.build
-       
-        
+      session[:customer] = current_customer.orders.build
+      session[:customer][:total_payment] = @total
        if params[:payment_select] == "1"
          session[:customer][:payment_method] = 1
        elsif params[:payment_select] == "2"
@@ -42,32 +33,33 @@ class Public::OrdersController < ApplicationController
          session[:customer][:address] = params[:address]
          session[:customer][:name] = params[:name]
        end
-         session[:customer].save
-         redirect_to comfirm_order_path(current_customer)
-         
+    end
+    
+    def create
          @order = Order.new(session[:customer])
-        @order.customer_id = current_customer.id
-          cart_items = current_customer.cart_items
-          cart_items.each do |cart_item|
-             order_detail = OrderDetail.new
-             order_detail.item_id = cart_item.item.id
-             order_detail.making_status = 0
-             #order_detail.price = cart_item.price
-             order_detail.amount= cart_item.amount
-             order_detail.order_id = @order.id
-             order_detail.save
+         @order.customer_id = current_customer.id
+         @cart_items = current_customer.cart_items
+         @order.save
+         @cart_items.each do |cart_item|
+             @order_detail = OrderDetail.new
+             @order_detail.item_id = cart_item.item.id
+             @order_detail.making_status = 0
+             @order_detail.price = cart_item.item.price
+             @order_detail.amount= cart_item.amount
+             @order_detail.order_id = @order.id
+             @order_detail.save
           end
-        cart_items.destroy_all
-
-        
+        current_customer.cart_items.destroy_all
+        session.delete(:customer)
+        redirect_to complete_orders_path
     end
     
     def index
-         @orders = current_customer.orders
+         @orders = Order.all
     end
     
     def show
-        @orders = Order.find(params[:id])
+        @order = Order.find(params[:id])
     end
 
     def complete
