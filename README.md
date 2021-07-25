@@ -1,24 +1,14 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# アプリケーション名
+* nagano_cake
+# 概要
+*　DMMWEBCAMPの課題で作成したECサイト
+# 使用言語・フレームワーク
+* ruby
+* Rails 5.2.6
+# 環境
+* AWS/Cloud9
+# 作者
+* hirokiito0
+* kchoco
+* ryuju1029
+* kztn0112
