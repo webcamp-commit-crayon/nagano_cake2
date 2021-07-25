@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
   def index
-    @items=Item.all
+    @items = Item.all
   end
 
   def show
@@ -15,7 +15,7 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      flash[:info] = '登録に成功しました。'
+      flash[:info]        = '登録に成功しました。'
        redirect_to admin_item_path(@item)
     else
        flash.now[:danger] = '登録に失敗しました。'
@@ -30,7 +30,7 @@ class Admin::ItemsController < ApplicationController
   def update
   @item =Item.find(params[:id])
   if @item.update(item_params)
-    flash[:info] = '登録に成功しました。'
+    flash[:info]       = '登録に成功しました。'
     redirect_to admin_item_path(@item)
   else
     flash.now[:danger] = '登録に失敗しました。'
