@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :admins, controllers: {
-    sessions: 'admins/sessions',
-    passwords: 'admins/passwords',
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
     registrations: 'admins/registrations'
   }
   devise_for :customers, controllers: {
-    sessions: 'customers/sessions',
-    passwords: 'customers/passwords',
+    sessions:      'customers/sessions',
+    passwords:     'customers/passwords',
     registrations: 'customers/registrations'
   }
 
   root :to => 'public/homes#top'
+  
   get '/about' => 'public/homes#about'
   get '/admin' => 'admin/homes#top'
 
@@ -21,7 +22,7 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :customers, only: [:show, :edit, :update] do
       member do
-        get :unsubscribe
+        get   :unsubscribe
         patch :withdraw
       end
     end
@@ -37,7 +38,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:new, :show, :create, :index] do
       collection do
         post :comfirm
-        get :complete
+        get  :complete
       end
     end
 
@@ -48,10 +49,10 @@ Rails.application.routes.draw do
 
 
   namespace:admin do
-    resources :customers, only: [:index, :show, :edit, :update]
-    resources :items, only: [:new, :create, :index, :show, :edit, :update]
-    resources :genres, only: [:create, :index, :show, :edit, :update]
-    resources :orders, only: [:show]
+    resources :customers,     only: [:index, :show, :edit, :update]
+    resources :items,         only: [:new, :create, :index, :show, :edit, :update]
+    resources :genres,        only: [:create, :index, :show, :edit, :update]
+    resources :orders,        only: [:show]
     resources :order_details, only: [:update]
   end
 end
