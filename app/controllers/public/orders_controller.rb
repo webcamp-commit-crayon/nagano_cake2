@@ -1,14 +1,14 @@
 class Public::OrdersController < ApplicationController
-    
+
     def new
         @orders    = Order.all
         @addresses = Address.all
     end
-    
+
     def comfirm
         @cart_items  = current_customer.cart_items
-        @total       = 0
-      @cart_items.each do |cart_item| 
+        @total      = 0
+      @cart_items.each do |cart_item|
         total_amount = (cart_item.item.price * cart_item.amount*1.1).round
         @total      += total_amount
       end
@@ -19,22 +19,28 @@ class Public::OrdersController < ApplicationController
        elsif params[:payment_select] == "2"
          session[:customer][:payment_method] = 2
        end
-    
+
        if params[:address_select] == "0"
          session[:customer][:postal_code] = current_customer.postal_code
          session[:customer][:address]     = current_customer.address
          session[:customer][:name]        = current_customer.last_name
        elsif params[:address_select] == "1"
          session[:customer][:postal_code] = Address.find(params[:address_id]).postal_code
+<<<<<<< HEAD
          session[:customer][:address]     = Address.find(params[:address_id]).address
          session[:customer][:name]        = Address.find(params[:address_id]).name
        else 
+=======
+         session[:customer][:address] = Address.find(params[:address_id]).address
+         session[:customer][:name] = Address.find(params[:address_id]).name
+       else
+>>>>>>> 98b7ae48a39e0d8c8603158661fc5b9786a10b4c
          session[:customer][:postal_code] = params[:postal_code]
          session[:customer][:address]     = params[:address]
          session[:customer][:name]        = params[:name]
        end
     end
-    
+
     def create
          @order               = Order.new(session[:customer])
          @order.customer_id   = current_customer.id
@@ -54,17 +60,22 @@ class Public::OrdersController < ApplicationController
         session.delete(:customer)
         redirect_to complete_orders_path
     end
-    
+
     def index
          @orders = Order.all
     end
-    
+
     def show
         @order = Order.find(params[:id])
         @total = 0
           @order.order_details.each do |order_detail|
+<<<<<<< HEAD
             @total += order_detail.price*order_detail.amount
           end 
+=======
+          @total += order_detail.price*order_detail.amount
+          end
+>>>>>>> 98b7ae48a39e0d8c8603158661fc5b9786a10b4c
     end
 
     def complete
@@ -75,7 +86,7 @@ class Public::OrdersController < ApplicationController
     def order_params
         params.require(:order).permit(:name, :postal_code, :address, :payment_method)
     end
-    
+
     def cart_item_any?
        if current_customer.cart_items.empty?
           redirect_to customer_path
