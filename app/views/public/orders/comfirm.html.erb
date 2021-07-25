@@ -39,7 +39,7 @@
       <table class="w-100">
         <tr>
           <td>送料</td>
-          <td class="text-right">500円</td>
+          <td class="text-right">800円</td>
         </tr>
         <tr>
           <td>商品合計</td>
@@ -48,7 +48,7 @@
       </table>
       <div class="border-top mt-3 pt-2 mb-1">支払方法<p class="text-right"><%= session[:customer]["payment_method"] %></p></div>
       <div class="border-top mt-3 pt-2 mb-1">合計金額</div>
-      <h4 class="content-justify-end border-bottom pb-2 mb-4 text-danger">¥<%= @total+500 %></h4>
+      <h4 class="content-justify-end border-bottom pb-2 mb-4 text-danger">¥<%= @total+800 %></h4>
 
 
       <%= f.submit "購入確定", class: "btn btn-primary mt-3" %>

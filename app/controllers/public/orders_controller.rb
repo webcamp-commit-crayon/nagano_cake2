@@ -13,7 +13,7 @@ class Public::OrdersController < ApplicationController
         @total += total_amount
       end
       session[:customer] = current_customer.orders.build
-      session[:customer][:total_payment] = @total
+      session[:customer][:total_payment] = @total+800
        if params[:payment_select] == "1"
          session[:customer][:payment_method] = 1
        elsif params[:payment_select] == "2"
@@ -39,10 +39,11 @@ class Public::OrdersController < ApplicationController
          @order = Order.new(session[:customer])
          @order.customer_id = current_customer.id
          @cart_items = current_customer.cart_items
+         @order.shipping_cost = 800
          @order.save
          @cart_items.each do |cart_item|
              @order_detail = OrderDetail.new
-             @order_detail.item_id = cart_item.item.id
+             @order_detail.item_id = cart_item.item_id
              @order_detail.making_status = 0
              @order_detail.price = cart_item.item.price
              @order_detail.amount= cart_item.amount
@@ -60,6 +61,10 @@ class Public::OrdersController < ApplicationController
     
     def show
         @order = Order.find(params[:id])
+        @total = 0
+          @order.order_details.each do |order_detail|
+          @total += order_detail.price*order_detail.amount
+          end 
     end
 
     def complete
