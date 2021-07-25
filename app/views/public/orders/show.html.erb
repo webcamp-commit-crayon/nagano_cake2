@@ -43,18 +43,41 @@
                     </tr>
             </table>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-3">
             <table class="table table-striped">
-                <tr>注文内容</tr>
+                <tr>請求情報</tr>
                 <tr>
-                    <th>商品</th>
-                    <th>単価</th>
-                    <th>個数</th>
-                    <th>小計</th>
+                    <th>商品合計</th>
+                    <td><%= @total %></td>
+                </tr>
+                <tr>
+                    <td>配送料</td>
+                    <td><%= @order.shipping_cost %></td>
+                </tr>
+                <tr>
+                    <td>ご請求額</td>
+                    <td><%= @total + @order.shipping_cost %></td>
                 </tr>
             </table>
         </div>
+    </div>
+    <div class="row">
+    <div class="col-md-9">
+        <table class="table table-striped">
+            <tr>注文内容</tr>
+            <tr>
+                <th>商品</th>
+                <th>単価</th>
+                <th>個数</th>
+                <th>小計</th>
+            </tr>
+            <% @order.order_details.each do |order_detail| %>
+            <tr>
+                <td><%= order_detail.item.name %></td>
+                <td><%= order_detail.price %></td>
+                <td><%= order_detail.amount %></td>
+                <td><%= (order_detail.price*1.1).round %></td>
+            <% end %>
+        </table>
     </div>
 </div>
