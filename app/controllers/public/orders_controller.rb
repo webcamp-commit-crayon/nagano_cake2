@@ -27,7 +27,7 @@ class Public::OrdersController < ApplicationController
        elsif params[:address_select] == "1"
          session[:customer][:postal_code] = Address.find(params[:address_id]).postal_code
          session[:customer][:address]     = Address.find(params[:address_id]).address
-         session[:customer][:name]         = Address.find(params[:address_id]).name
+         session[:customer][:name]        = Address.find(params[:address_id]).name
        else
          session[:customer][:postal_code] = params[:postal_code]
          session[:customer][:address]     = params[:address]
@@ -63,13 +63,8 @@ class Public::OrdersController < ApplicationController
         @order = Order.find(params[:id])
         @total = 0
           @order.order_details.each do |order_detail|
-<<<<<<< HEAD
-            @total += order_detail.price*order_detail.amount
-          end 
-=======
           @total += order_detail.price*order_detail.amount
           end
->>>>>>> 98b7ae48a39e0d8c8603158661fc5b9786a10b4c
     end
 
     def complete
