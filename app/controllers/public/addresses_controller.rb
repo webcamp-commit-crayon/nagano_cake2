@@ -1,17 +1,17 @@
 class Public::AddressesController < ApplicationController
 
     def index
-        @address = Address.new
+        @address   = Address.new
         @addresses = Address.all
     end
 
     def create
-        @address = Address.new(address_params)
-        @addresses = Address.all
+        @address             = Address.new(address_params)
+        @addresses           = Address.all
         @address.customer_id = current_customer.id
         if @address.save
         　redirect_to addresses_path
-        　flash[:info] = '登録に成功しました。'
+        　flash[:info]       = '登録に成功しました。'
         else
           render "index"
           flash.now[:danger] = '登録に失敗しました。'
@@ -23,12 +23,12 @@ class Public::AddressesController < ApplicationController
     end
 
     def update
-        @address = Address.find(params[:id])
+        @address             = Address.find(params[:id])
         @address.customer_id = current_customer.id
         if @address.update(address_params)
           redirect_to addresses_path, notice: "You have updated user successfully."
         else
-           render "edit"
+          render "edit"
         end
     end
 
