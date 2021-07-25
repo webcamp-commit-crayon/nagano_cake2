@@ -2,7 +2,8 @@ class Public::AddressesController < ApplicationController
 
     def index
         @address   = Address.new
-        @addresses = Address.all
+        @customer = current_customer
+        @addresses = @customer.addresses.all
     end
 
     def create
@@ -10,8 +11,8 @@ class Public::AddressesController < ApplicationController
         @addresses           = Address.all
         @address.customer_id = current_customer.id
         if @address.save
-        　redirect_to addresses_path
-        　flash[:info]       = '登録に成功しました。'
+          redirect_to addresses_path
+          flash[:info]       = '登録に成功しました。'
         else
           render "index"
           flash.now[:danger] = '登録に失敗しました。'
