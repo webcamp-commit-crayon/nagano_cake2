@@ -7,7 +7,7 @@ class Public::OrdersController < ApplicationController
 
     def comfirm
         @cart_items  = current_customer.cart_items
-        @total      = 0
+        @total       = 0
       @cart_items.each do |cart_item|
         total_amount = (cart_item.item.price * cart_item.amount*1.1).round
         @total      += total_amount
@@ -26,15 +26,9 @@ class Public::OrdersController < ApplicationController
          session[:customer][:name]        = current_customer.last_name
        elsif params[:address_select] == "1"
          session[:customer][:postal_code] = Address.find(params[:address_id]).postal_code
-<<<<<<< HEAD
-         session[:customer][:address]     = Address.find(params[:address_id]).address
-         session[:customer][:name]        = Address.find(params[:address_id]).name
-       else 
-=======
          session[:customer][:address] = Address.find(params[:address_id]).address
          session[:customer][:name] = Address.find(params[:address_id]).name
        else
->>>>>>> 98b7ae48a39e0d8c8603158661fc5b9786a10b4c
          session[:customer][:postal_code] = params[:postal_code]
          session[:customer][:address]     = params[:address]
          session[:customer][:name]        = params[:name]
