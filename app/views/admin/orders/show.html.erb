@@ -26,10 +26,12 @@
             <tr>
               <td>注文ステータス</td>
               <td>
-              <%#= form_with(url: admin_order_detail_path, method: :patch, local: true) do |f| %>
-              <%=select_tag "status", options_for_select([["入金待ち",0],["入金確認中",1],["製作中",2],["発送準備中",3],["発送済",4]])%>
+              <%= form_with model: @order ,url:admin_order_path(@order),method: :patch,local: true do |f| %>
+              <%= f.select :status, [["入金待ち","入金待ち"],["入金確認中","入金確認中"],["製作中","製作中"],["発送準備中","発送準備中"],["発送済","発送済"]] %>
+              <%= f.submit '更新', class: 'btn btn-primary btn-sm'%>
+              <% end %>
               </td>
-            </tr>
+              </tr>
           </table>
       </div>
 
@@ -45,17 +47,16 @@
     <th>制作ステータス</th>
     <th></th>
   </tr>
-  <tr>
-    　<%# @order.order_details.each do |detail| %>
-　   <%# @name = detail.item_id.name %>
-  　<%# end %>
-    <td><%#= @name %></td>
+    　<% @order.order_details.each do |detail| %>
+    <tr>
+    <td><%= detail.item.name %></td>
+    <td><%= detail.price %></td>
+    <td><%= detail.amount %></td>
+    <td><%= detail.price* detail.amount*1.1%></td>
     <td></td>
     <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+    </tr>
+    <% end %>
 </table>
 </div>
 
@@ -67,7 +68,7 @@
     </tr>
     <tr>
       <td>送料</td>
-      <td></td>
+      <td><%=@order.shipping_cost %></td>
     </tr>
     <tr>
       <td>請求合計額</td>
