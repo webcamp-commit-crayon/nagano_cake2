@@ -1,27 +1,28 @@
 <h2>オーダー一覧</h2>
 
 <table class="table">
-  <tr>
-    <th>注文日</th>
-    <th>配送先</th>
-    <th>注文商品</th>
-    <th>支払金額</th>
-    <th>ステータス</th>
-    <th>注文詳細</th>
-  </tr>
+<tr>
+  <th>注文日</th>
+  <th>配送先</th>
+  <th>注文商品</th>
+  <th>支払金額</th>
+  <th>ステータス</th>
+  <th>注文詳細</th>
+</tr>
 
-  <% @orders.each do |order| %>
+<% @orders.each do |order| %>
   <tr>
     <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
     <td><%= order.address %></td>
     <td>
-      <% order.order_details.each do |order_detail| %>
-        <p><%= order_detail.item.name %></p>
-      <% end %>
+    <% order.order_details.each do |order_detail| %>
+    <p><%= order_detail.item.name %></p>
+    <% end %>
     </td>
     <td><%= order.total_payment %></td>
     <td><%= order.status %></td>
+    
     <td><%= link_to  '表示する', order_path(order.id) ,class: 'btn btn-primary ml-4' %></td>
   </tr>
-  <% end %>
+<% end %>
 </table>
