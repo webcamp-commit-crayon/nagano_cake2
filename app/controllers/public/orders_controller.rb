@@ -39,6 +39,7 @@ class Public::OrdersController < ApplicationController
          @order = Order.new(session[:customer])
          @order.customer_id = current_customer.id
          @cart_items = current_customer.cart_items
+         @order.shipping_cost = 800
          @order.save
          @cart_items.each do |cart_item|
              @order_detail = OrderDetail.new
@@ -60,6 +61,10 @@ class Public::OrdersController < ApplicationController
     
     def show
         @order = Order.find(params[:id])
+        @total = 0
+          @order.order_details.each do |order_detail|
+          @total += order_detail.price * order_detail.amount
+          end 
     end
 
     def complete

@@ -16,17 +16,19 @@
                     <table class="table table-striped">
                         <tr>請求情報</tr>
                         <tr><th>商品合計</th>
-                            <th><%#= @orders.amount %></th>
+                       
+                            <td><%= @total %></td></tr>
                         </tr>
                         <tr><td>配送料</td>
                             <td><%= @order.shipping_cost %></td>
                         </tr>
                         <tr>
                             <td>ご請求額</td>
-                            <td><%= @order.total_payment %></td>
+                            <td><%= @total+@order.shipping_cost %></td>
                         </tr>
                     </table>
                 </div>
+                
     </div>
     
     
