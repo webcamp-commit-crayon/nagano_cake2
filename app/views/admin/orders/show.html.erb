@@ -1,15 +1,14 @@
 <div class="container">
   <h1>注文履歴詳細</h1>
-
       <div class="cartitem-area clearfix border-bottom border-dark p-3">
-
-
           <table class="table table-hover table-inverse">
             <tr>
               <td>購入者</td>
-              <td><%=link_to admin_customer_path(@order.customer) do %>
-              <%= @order.customer.last_name %><%= @order.customer.first_name %>
-              <% end %></td>
+              <td>
+                <%=link_to admin_customer_path(@order.customer) do %>
+                  <%= @order.customer.last_name %><%= @order.customer.first_name %>
+                <% end %>
+              </td>
             </tr>
             <tr>
               <td>注文日</td>
@@ -26,62 +25,57 @@
             <tr>
               <td>注文ステータス</td>
               <td>
-              <%= form_with model: @order ,url:admin_order_path(@order),method: :patch,local: true do |f| %>
-              <%= f.select :status, [["入金待ち","入金待ち"],["入金確認","入金確認"],["制作中","制作中"],["発送準備中","発送準備中"],["発送済み","発送済み"]] %>
-              <%= f.submit '更新', class: 'btn btn-primary btn-sm'%>
-              <% end %>
+                <%= form_with model: @order ,url:admin_order_path(@order),method: :patch,local: true do |f| %>
+                  <%= f.select :status, [["入金待ち","入金待ち"],["入金確認","入金確認"],["制作中","制作中"],["発送準備中","発送準備中"],["発送済み","発送済み"]] %>
+                  <%= f.submit '更新', class: 'btn btn-primary btn-sm'%>
+                <% end %>
               </td>
-              </tr>
+            </tr>
           </table>
       </div>
-
-<div class="row">
-
- <div class="col-sm-9">
-<table class="table table-hover table-inverse">
-  <tr>
-    <th>商品名</th>
-    <th>単価（税込）</th>
-    <th>数量</th>
-    <th>小計</th>
-    <th>制作ステータス</th>
-    <th></th>
-  </tr>
-    　<% @order.order_details.each do |detail| %>
-    <tr>
-    <td><%= detail.item.name %></td>
-    <td><%= detail.price %></td>
-    <td><%= detail.amount %></td>
-    <td><%= (detail.price* detail.amount*1.1).round %></td>
-    <td>
-      <%= form_with model: detail ,url:admin_order_detail_path(detail),method: :patch,local: true do |f| %>
-      <%= f.select :making_status, [["着手不可","着手不可"],["制作待ち","制作待ち"],["制作中","制作中"],["制作完了","制作完了"]] %>
-      <%= f.submit '更新', class: 'btn btn-primary btn-sm'%>
-      <% end %>
-      </td>
-    <td></td>
-    </tr>
-    <% end %>
-
-</table>
-</div>
-
-<div class="col-sm-3">
-  <table>
-    <tr>
-      <td>商品合計</td>
-      <td><%=(@total).round %></td>
-    </tr>
-    <tr>
-      <td>送料</td>
-      <td><%=@order.shipping_cost %></td>
-    </tr>
-    <tr>
-      <td>請求合計額</td>
-      <td><%=(@total+@order.shipping_cost).round %></td>
-    </tr>
-  </table>
-</div>
-
-</div>
+      <div class="row">
+       <div class="col-sm-9">
+        <table class="table table-hover table-inverse">
+          <tr>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>制作ステータス</th>
+            <th></th>
+          </tr>
+    　     <% @order.order_details.each do |detail| %>
+          <tr>
+            <td><%= detail.item.name %></td>
+            <td><%= detail.price %></td>
+            <td><%= detail.amount %></td>
+            <td><%= (detail.price* detail.amount*1.1).round %></td>
+            <td>
+              <%= form_with model: detail ,url:admin_order_detail_path(detail),method: :patch,local: true do |f| %>
+                <%= f.select :making_status, [["着手不可","着手不可"],["制作待ち","制作待ち"],["制作中","制作中"],["制作完了","制作完了"]] %>
+                <%= f.submit '更新', class: 'btn btn-primary btn-sm'%>
+              <% end %>
+            </td>
+            <td></td>
+          </tr>
+          <% end %>
+        </table>
+       </div>
+       <div class="col-sm-3">
+        <table>
+          <tr>
+            <td>商品合計</td>
+            <td><%=(@total).round %></td>
+          </tr>
+          <tr>
+            <td>送料</td>
+            <td><%=@order.shipping_cost %></td>
+          </tr>
+          <tr>
+            <td>請求合計額</td>
+            <td><%=(@total+@order.shipping_cost).round %></td>
+          </tr>
+        </table>
+       </div>
+      </div>
 </div>

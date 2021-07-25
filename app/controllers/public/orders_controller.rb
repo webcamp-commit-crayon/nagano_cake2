@@ -26,8 +26,8 @@ class Public::OrdersController < ApplicationController
          session[:customer][:name]        = current_customer.last_name
        elsif params[:address_select] == "1"
          session[:customer][:postal_code] = Address.find(params[:address_id]).postal_code
-         session[:customer][:address] = Address.find(params[:address_id]).address
-         session[:customer][:name] = Address.find(params[:address_id]).name
+         session[:customer][:address]     = Address.find(params[:address_id]).address
+         session[:customer][:name]         = Address.find(params[:address_id]).name
        else
          session[:customer][:postal_code] = params[:postal_code]
          session[:customer][:address]     = params[:address]
