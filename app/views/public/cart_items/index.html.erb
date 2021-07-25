@@ -1,4 +1,5 @@
 <div class="container takasa">
+  
   <div class="row">
     <div class="col-xs-10">
       <h2><i class="fas fa-shopping-cart"></i>ショッピングカート</h2>
@@ -7,17 +8,17 @@
       <div><%= link_to "カートを空にする", destroy_all_cart_item_path(@cart_items), method: :delete, class:"btn btn-danger" %></div>
     </div>
   </div>
+  
   <div class="row">
     <h4><%= notice %></h4>
 	  <table class="table-bordered">
-	  <tr>
+	    <tr>
         <th id="item-name">商品名</th>
         <th style="width:180px;">単価（税込）</th>
         <th style="width:180px;">数量</th>
         <th style="width:180px;">小計</th>
         <th style="width:180px;"></th>
       </tr>
-
       <% @cart_items.each do |cart_item| %>
       <tr>
         <td>
@@ -25,24 +26,29 @@
             <%= attachment_image_tag cart_item.item, :image, size: "50x50", fallback: "no_image.jpg"%><%= cart_item.item.name %>
           <% end %>
         </td>
-        <td><%= (cart_item.item.price*1.1).floor %></td>
         <td>
-              <%= form_for cart_item, url: cart_item_path(cart_item) do |f| %>
-              <%= f.number_field :amount, min:1, max: 20 %>　　<%= f.submit "更新" ,class:"btn btn-primary btn-xs" %>
-              <% end %>
+          <%= (cart_item.item.price*1.1).floor %>
         </td>
-        <td><%= ((cart_item.item.price*1.1).floor*cart_item.amount) %>
-            <% @total += ((cart_item.item.price*1.1).floor*cart_item.amount) %>
+        <td>
+          <%= form_for cart_item, url: cart_item_path(cart_item) do |f| %>
+            <%= f.number_field :amount, min:1, max: 20 %>
+            <%= f.submit "更新" ,class:"btn btn-primary btn-xs" %>
+          <% end %>
         </td>
-        <td><div style="margin-left:50px;">
-          <%= link_to "Destroy", cart_item_path(cart_item), method: :delete, class:"btn btn-danger" %>
-            </div>
+        <td>
+          <%= ((cart_item.item.price*1.1).floor*cart_item.amount) %>
+          <% @total += ((cart_item.item.price*1.1).floor*cart_item.amount) %>
+        </td>
+        <td>
+          <div style="margin-left:50px;">
+            <%= link_to "Destroy", cart_item_path(cart_item), method: :delete, class:"btn btn-danger" %>
+          </div>
         </td>
       </tr>
       <% end %>
     </table>
-
   </div>
+  
   <div class="row">
     <div class="col-xs-9">
       <div style="margin-top:50px;"><%= link_to "買い物を続ける", root_path, class:"btn btn-primary" %></div>
@@ -54,6 +60,7 @@
       </div>
     </div>
   </div>
+  
   <div class="row">
     <div class="col-xs-4"></div>
     <div class="col-xs-4 cart_continue_to_order">
@@ -61,5 +68,4 @@
     </div>
     <div class="col-xs-4"></div>
   </div>
-
 </div>
