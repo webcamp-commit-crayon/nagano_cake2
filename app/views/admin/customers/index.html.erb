@@ -21,11 +21,13 @@
           <% end %>
         </td>
         <td> <%=customer.email %></td>
-        <td><% if customer.is_valid %>
-      　　有効
+        <td>
+          <% if customer.is_valid %>
+        　　  有効
       　　<% else %>
-      　　退会
-      　　<% end %></td>
+        　　  退会
+      　　<% end %>
+      　</td>
       </tr>
       <% end %>
     </tbody>
