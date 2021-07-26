@@ -2,7 +2,7 @@ class Public::OrdersController < ApplicationController
 
     def new
         @orders    = Order.all
-        @customer = current_customer
+        @customer  = current_customer
         @addresses = @customer.addresses.all
     end
 

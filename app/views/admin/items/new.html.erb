@@ -1,13 +1,9 @@
 <div class='container'>
   <div class='row'>
     <div class="col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0 mx-auto">
-
-     <%= render 'admin/items/flash', item: @item %>
-
-      <h3 class="mt-3">商品新規登録</h3>
-
+    <%= render 'admin/items/flash', item: @item %>
+    <h3 class="mt-3">商品新規登録</h3>
     <%= form_with model: @item, url: admin_items_path, method: :post, local:true do |f| %>
-
       <table class="table-inverse">
         <tbody>
           <tr height="50">
@@ -44,8 +40,7 @@
          <p class="text-center">
            <%= f.submit'新規投稿', :class=>"button"%>
          </p>
-      <% end %>
-
+    <% end %>
     </div>
   </div>
- </div>
+</div>

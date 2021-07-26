@@ -1,10 +1,7 @@
-
 <div class="container">
   <div class="row">
    <div class="col-6">
-
-     <h1 class="pt-3"><%=@customer.last_name %><%=@customer.first_name %>さんの詳細ページ</h1>
-
+    <h1 class="pt-3"><%=@customer.last_name %><%=@customer.first_name %>さんの詳細ページ</h1>
     <table class="pt-3">
       <tbody>
         <tr height="50">
@@ -37,19 +34,19 @@
         </tr>
         <tr height="50">
           <td>会員ステータス</td>
-          <td><% if @customer.is_valid %>
-               有効
-             <% else %>
-               退会
-             <% end %>
+          <td>
+            <% if @customer.is_valid %>
+              有効
+            <% else %>
+              退会
+            <% end %>
           </td>
         </tr>
       </tbody>
     </table>
-
-     <center>
-      <%= link_to "編集する", edit_admin_customer_path(@customer) ,class:"button btn-sm"%>
-      <%= link_to "注文一覧を見る", admin_path ,class:"button btn-sm"%>
+    <center>
+      <%= link_to "編集する",       edit_admin_customer_path(@customer) ,class:"button btn-sm"%>
+      <%= link_to "注文一覧を見る", admin_path ,                         class:"button btn-sm"%>
     </center>
 
    </div>

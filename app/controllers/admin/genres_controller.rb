@@ -23,7 +23,7 @@ class Admin::GenresController < ApplicationController
   def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
-      flash[:info] = '登録に成功しました。'
+      flash[:info]       = '登録に成功しました。'
       redirect_to admin_genres_path
     else
       flash.now[:danger] = '登録に失敗しました。'
