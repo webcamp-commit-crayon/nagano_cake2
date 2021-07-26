@@ -1,5 +1,4 @@
 <div class="container takasa">
-
   <div class="row">
     <div class="col-xs-10">
       <h2><i class="fas fa-shopping-cart"></i>ショッピングカート</h2>
@@ -8,7 +7,6 @@
       <div><%= link_to "カートを空にする", destroy_all_cart_item_path(@cart_items), method: :delete, class:"btn btn-danger" %></div>
     </div>
   </div>
-
   <div class="row">
     <h4><%= notice %></h4>
 	  <table class="table-bordered">
@@ -48,7 +46,6 @@
       <% end %>
     </table>
   </div>
-
   <div class="row">
     <div class="col-xs-9">
       <div style="margin-top:50px;"><%= link_to "買い物を続ける", root_path, class:"btn btn-primary" %></div>
@@ -60,7 +57,6 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col-xs-4"></div>
     <div class="col-xs-4 cart_continue_to_order">

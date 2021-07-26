@@ -23,26 +23,26 @@
   <div style="text-align:center; position:relative; top:30px">
     <%= image_tag "/assets/top_phot.jpg", size:'600x350' %> 
   </div>
-  <center>
-    <div class = "box">
-      <p class="card-text">ようこそ、ながのCAKEへ！</p>
-      <p>このサイトは、ケーキ販売のECサイトになります。</p>
-      <p>会員でない方も商品の閲覧はできますが、</p>
-      <p>購入には会員登録が必要になります。</p>
-    </div>
-     </center>
-    </div>
+    <center>
+      <div class = "box">
+        <p class="card-text">ようこそ、ながのCAKEへ！</p>
+        <p>このサイトは、ケーキ販売のECサイトになります。</p>
+        <p>会員でない方も商品の閲覧はできますが、</p>
+        <p>購入には会員登録が必要になります。</p>
+      </div>
+    </center>
+</div>
 <h2 class = "m-5">新着商品</h2>
 <div class = "list">
-    	<% @items.each do |item| %>
-        <li class="list-inline-item">
-  			<%= link_to item_path(item.id) ,style: "color: black;", data: {"turbolinks" => false} do %>
-  				<%= attachment_image_tag item, :image, :fill, 200, 150, format: 'jpeg',fallback: "no_image.jpg" %><br>
-  				<%= item.name %><br>
-  				¥<%= item.price.to_s(:delimited, delimiter: ',') %>
-  		  </li>
-  			<% end %>
-      <% end %>
+  	<% @items.each do |item| %>
+      <li class="list-inline-item">
+			<%= link_to item_path(item.id) ,style: "color: black;", data: {"turbolinks" => false} do %>
+				<%= attachment_image_tag item, :image, :fill, 200, 150, format: 'jpeg',fallback: "no_image.jpg" %><br>
+				<%= item.name %><br>
+				¥<%= item.price.to_s(:delimited, delimiter: ',') %>
+		  </li>
+			<% end %>
+    <% end %>
 </div>
  
 

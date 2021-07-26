@@ -5,42 +5,35 @@
     <div class='col-md-3'>
       <%=attachment_image_tag @item,:image,:fill, 60, 60, fallback: "no_image.jpg", class: "w-100 pt-5" %>
     </div>
-
     <div class='col-md-8 offset-md-1'>
       <table class="table">
         <tbody>
-
           <tr>
            <th>商品名</th>
            <th><%= @item.name %></th>
           </tr>
-
           <tr>
         　 <th>商品説明</th>
            <th><%= @item.introduction %></th>
           </tr>
-
           <tr>
             <th>ジャンル</th>
             <th><%= @item.genre.name %></th>
           </tr>
-
           <tr>
            <th>税込価格<p>（税別価格）</p></th>
            <th> <%= convert_to_taxed(@item.price) %>(<%= @item.price %>)円</th>
           </tr>
-
           <tr>
            <th></th>
            <th>
         　　<% if @item.is_active %>
-        　　販売中
+          　　販売中
         　　<% else %>
         　　販売中止
         　　<% end %>
       　  　 </th>
           </tr>
-
         </tbody>
       </table>
       <div class="col-xs-5">

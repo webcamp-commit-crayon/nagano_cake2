@@ -4,12 +4,26 @@
         <div class="col-md-7">
             <table class="table table-striped">
                 <tr>注文情報</tr>
-                <tr><th>注文日</th><th><%= @order.created_at.strftime('%Y/%m/%d') %></th></tr>
-                <tr><td>配送先</td><td>〒<%= @order.postal_code %><br>
-                <%= @order.name %>
-                <%= @order.address %></td></tr>
-                <tr><td>支払方法</td><td><%= @order.payment_method %></td></tr>
-                <tr><td>ステータス</td><td><%= @order.status %></td></tr>
+                <tr>
+                    <th>注文日</th>
+                    <th><%= @order.created_at.strftime('%Y/%m/%d') %></th>
+                </tr>
+                <tr>
+                    <td>配送先</td>
+                    <td>
+                        〒<%= @order.postal_code %><br>
+                          <%= @order.name %>
+                          <%= @order.address %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>支払方法</td>
+                    <td><%= @order.payment_method %></td>
+                </tr>
+                <tr>
+                    <td>ステータス</td>
+                    <td><%= @order.status %></td>
+                </tr>
             </table>
         </div>
         <div class="col-md-3">
@@ -40,7 +54,7 @@
                 <th>個数</th>
                 <th>小計</th>
             </tr>
-            <% @order.order_details.each do |order_detail| %>
+                <% @order.order_details.each do |order_detail| %>
             <tr>
                 <td><%= order_detail.item.name %></td>
                 <td><%= order_detail.price %></td>
