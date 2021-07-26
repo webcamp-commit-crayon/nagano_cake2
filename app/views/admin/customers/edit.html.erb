@@ -35,8 +35,8 @@
       </div>
       <div class="form-group">
         <%= f.label :"会員ステータス" %>
-        <%= f.radio_button :is_deleted,false,checked: !@customer.is_deleted %>有効
-        <%= f.radio_button :is_deleted,true,checked: @customer.is_deleted %>退会
+        <%= f.radio_button :is_valid,false,checked: !@customer.is_valid %>退会
+        <%= f.radio_button :is_valid,true,checked: @customer.is_valid %>有効
       </div>
       <div class="form-group">
         <%= f.submit class: 'button btn-sm' %>

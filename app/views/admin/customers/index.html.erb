@@ -26,10 +26,10 @@
 
   </td>
   <td> <%=customer.email %></td>
-  <td><% if customer.is_deleted %>
-　　退会
-　　<% else %>
+  <td><% if customer.is_valid %>
 　　有効
+　　<% else %>
+　　退会
 　　<% end %></td>
 </tr>
 <% end %>
