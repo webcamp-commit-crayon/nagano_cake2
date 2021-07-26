@@ -48,8 +48,16 @@
     </table>
 
      <center>
-      <%= link_to "編集する", edit_admin_customer_path(@customer) , :class=>"button btn-sm"%>
-      <%= link_to "注文一覧を見る", admin_path , :class=>"button btn-sm"%>
+      <table>
+        <tr>
+        <td><%= link_to "編集する", edit_admin_customer_path(@customer) , :class=>"button btn-sm m-3"%></td>
+        <td> <%= form_with url:admin_path,method: :get,required: true , local: true  do |f| %>
+      <%= hidden_field_tag :customer_id  , @customer.id %>
+      <%= f.submit "注文一覧を見る",:class=>"button btn-sm"%>
+      <% end %>
+        </td>
+      </tr>
+      </table>
     </center>
 
    </div>
