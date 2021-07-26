@@ -37,10 +37,10 @@
         </tr>
         <tr height="50">
           <td>会員ステータス</td>
-          <td><% if @customer.is_deleted %>
-               退会
-             <% else %>
+          <td><% if @customer.is_valid %>
                有効
+             <% else %>
+               退会
              <% end %>
           </td>
         </tr>
