@@ -1,20 +1,20 @@
-<h1>購入品確認</h1>
-
-
-<div class="row">
-  <div class="col-sm-9">
-  <%= form_with model: @cart_item, url: orders_path, local: true  do |f| %>
-    <% @cart_items.each do |cart_item| %>
+<div class="container">
+  <h4 class="rounded mt-3 mb-3 p-2" style="background-color:#ddd;">購入品確認</h4>
+  <div class="row">
+    <div class="col-sm-9">
+      <%= form_with model: @cart_item, url: orders_path, local: true  do |f| %>
+      <% @cart_items.each do |cart_item| %>
       <div class="cartitem-area clearfix border-bottom border-dark p-3">
         <div class="cartitem-figure float-left" style="width:35%">
           <%= attachment_image_tag cart_item.item, :image, format: 'jpeg', fallback: "", class: "img-fluid" %>
         </div>
-        <div class="cartitem-description float-right" style="width:60%">
-          <h4 class="cartitem-name p-3">
-            <%= cart_item.item.name %>
-          </h4>
+        
+      <div class="cartitem-description float-right" style="width:60%">
+        <h4 class="cartitem-name p-3">
+          <%= cart_item.item.name %>
+        </h4>
+        
           <table class="table">
-            
             <tr>
               <th>単価</th>
               <th>数量</th>
@@ -63,4 +63,5 @@
   <% end %>
     </div>
   </div>
+</div>
 </div>
