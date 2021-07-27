@@ -5,7 +5,7 @@
       <h2><i class="fas fa-shopping-cart"></i>ショッピングカート</h2>
     </div>
     <div class="col-xs-2">
-      <div><%= link_to "カートを空にする", destroy_all_cart_item_path(@cart_items), method: :delete, class:"btn btn-danger" %></div>
+      <div><%= link_to "カートを空にする", destroy_all_cart_item_path(@cart_items), method: :delete, class:"btn btn-danger ml-3" %></div>
     </div>
   </div>
   
@@ -41,31 +41,25 @@
         </td>
         <td>
           <div style="margin-left:50px;">
-            <%= link_to "Destroy", cart_item_path(cart_item), method: :delete, class:"btn btn-danger" %>
+            <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class:"btn btn-danger" %>
           </div>
         </td>
       </tr>
       <% end %>
     </table>
   </div>
+
   
+<div class="container">
   <div class="row">
-    <div class="col-xs-9">
-      <div style="margin-top:50px;"><%= link_to "買い物を続ける", root_path, class:"btn btn-primary" %></div>
+    <div class="col-md-5">
+      <%= link_to "買い物を続ける", root_path, class:"btn btn-primary m-3" %><%= link_to "注文情報入力に進む", new_order_path,class: "btn btn-success m-3" %>
     </div>
-    <div class="col-xs-3">
-      <div class="total-price-box">
-        <div class="total-price">合計金額</div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-3">
+            <div class="total-price">合計金額</div>
         <div class="total-price"><%= @total %></div>
-      </div>
     </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-xs-4"></div>
-    <div class="col-xs-4 cart_continue_to_order">
-      <%= link_to "注文情報入力に進む", new_order_path,class: "btn btn-success btn-lg" %>
-    </div>
-    <div class="col-xs-4"></div>
   </div>
 </div>
