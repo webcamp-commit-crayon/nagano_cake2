@@ -7,8 +7,8 @@ class Public::OrdersController < ApplicationController
     end
 
     def comfirm
-        @cart_items  = current_customer.cart_items
-        @total       = 0
+      @cart_items  = current_customer.cart_items
+      @total       = 0
       @cart_items.each do |cart_item|
         total_amount = (cart_item.item.price * cart_item.amount*1.1).round
         @total      += total_amount
