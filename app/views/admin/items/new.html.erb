@@ -1,0 +1,51 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-6 px-5 px-sm-0 mx-auto">
+
+     <%= render 'admin/items/flash', item: @item %>
+
+      <h3 class="mt-3">商品新規登録</h3>
+
+    <%= form_with model: @item, url: admin_items_path, method: :post, local:true do |f| %>
+
+      <table class="table-inverse">
+        <tbody>
+          <tr height="50">
+            <th width=150>商品画像</th>
+            <th><%= f.attachment_field :image %></th>
+          </tr>
+          <tr height="50">
+            <th>商品名</th>
+            <th><%= f.text_field :name, size: "40x20",placeholder:"商品名"%></th>
+          </tr>
+          <tr height="50">
+            <th>商品説明</th>
+            <th><%= f.text_area :introduction, size: "40x10",placeholder:"ここに説明文を記述します" %></th>
+          </tr>
+          <tr height="50">
+            <th>ジャンル</th>
+            <th>
+              <%= f.collection_select:genre_id, Genre.all, :id, :name,include_blank: "選択して下さい"%>
+            </th>
+          </tr>
+          <tr height="50">
+            <th>税抜価格</th>
+            <th><%= f.text_field :price,size: "40x20",placeholder:"1000" %><label>円</label></th>
+          </tr>
+          <tr height="50">
+            <th>販売ステータス</th>
+            <th>
+                <%= f.radio_button :is_active,true,checked: true %>販売中
+                <%= f.radio_button :is_active,false %>販売中止
+            </th>
+          </tr>
+        </tbody>
+      </table>
+         <p class="text-center">
+           <%= f.submit'新規投稿', :class=>"button"%>
+         </p>
+      <% end %>
+
+    </div>
+  </div>
+ </div>

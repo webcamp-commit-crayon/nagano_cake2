@@ -7,9 +7,15 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/05e7971d55.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
+    <% if admin_signed_in? %>
+    <%= render 'admin/homes/header' %>
+    <% else %>
+    <%= render 'public/homes/header' %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

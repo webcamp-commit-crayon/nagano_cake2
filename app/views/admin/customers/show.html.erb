@@ -1,0 +1,66 @@
+
+<div class="container">
+  <div class="row">
+   <div class="col-6">
+
+     <h1 class="pt-3"><%=@customer.last_name %><%=@customer.first_name %>さんの詳細ページ</h1>
+
+    <table class="pt-3">
+      <tbody>
+        <tr height="50">
+          <td width=150>会員ID</td>
+          <td><%=@customer.id %></td>
+        </tr>
+        <tr height="50">
+          <td>氏名</td>
+          <td><%=@customer.last_name %><span><%=@customer.first_name %></td>
+        </tr>
+        <tr height="50">
+          <td>フリガナ</td>
+          <td><%=@customer.last_name_kana %><span><%=@customer.first_name_kana %></td>
+        </tr height="50">
+        <tr height="50">
+          <td>郵便番号</td>
+          <td><%=@customer.postal_code %></td>
+        </tr>
+        <tr height="50">
+          <td>住所</td>
+          <td><%=@customer.address %></td>
+        </tr>
+        <tr height="50">
+          <td>電話番号</td>
+          <td><%=@customer.phone_number %></td>
+        </tr>
+        <tr height="50">
+          <td>メールアドレス</td>
+          <td><%=@customer.email %></td>
+        </tr>
+        <tr height="50">
+          <td>会員ステータス</td>
+          <td><% if @customer.is_valid %>
+               有効
+             <% else %>
+               退会
+             <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+     <center>
+      <table>
+        <tr>
+        <td><%= link_to "編集する", edit_admin_customer_path(@customer) , :class=>"button btn-sm m-3"%></td>
+        <td> <%= form_with url:admin_path,method: :get,required: true , local: true  do |f| %>
+      <%= hidden_field_tag :customer_id  , @customer.id %>
+      <%= f.submit "注文一覧を見る",:class=>"button btn-sm"%>
+      <% end %>
+        </td>
+      </tr>
+      </table>
+    </center>
+
+   </div>
+  </div>
+ </div>
+</div>

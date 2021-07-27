@@ -1,0 +1,33 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h4>ログイン</h4>
+
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="form-group">
+            <label>姓</label>
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %><br>
+            <label>名</label>
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+          </div>
+
+          <div class="form-group">
+            <label>メールアドレス</label><br>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <label>パスワード</label><br>
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "ログイン", class:"btn btn-success", style:"display:block; margin: 0 auto;" %>
+          </div>
+        <% end %>
+        <%= link_to new_customer_registration_path do %>
+          <span class="glyphicon glyphicon-chevron-left">新規登録はこちら</span>
+        <% end %>
+    </div>
+  </div>
+</div>

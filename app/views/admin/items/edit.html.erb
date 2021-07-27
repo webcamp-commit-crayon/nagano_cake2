@@ -1,0 +1,37 @@
+
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>商品編集</h2>
+    <%= form_with model:@item, url: admin_item_path(@item), method: :patch,local:true do |f| %>
+     <div class="form-group">
+        <%= f.label :"商品画像" %>
+        <%= f.attachment_field :image, class: "form-control-file user_image" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"商品名" %>
+        <%= f.text_field :name, class: "form-control name" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"商品説明" %>
+        <%= f.text_area :introduction, class: "form-control introduction" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :"ジャンル" %>
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "選択して下さい" ,class: "form-control introduction"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :"税別価格" %>
+        <%= f.text_area :price, class: "form-control price"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :"販売ステータス" %>
+        <%= f.radio_button :is_active,true,checked: @item.is_active %>販売中
+        <%= f.radio_button :is_active,false,checked: !@item.is_active %>販売中止
+      </div>
+      <div class="form-group">
+        <%= f.submit'更新する',  :class=>"button" %>
+      </div>
+    <% end %>
+  </div>
+</div>
