@@ -9,14 +9,14 @@
         <ul class="navbar-nav ml-auto">
         <% if customer_signed_in? %>
           <li><%= link_to ' マイページ',customer_path(current_customer),class: "btn btn-outline-dark r-3" %></li>
-          <li><div class="ml-5"><%= link_to ' 商品一覧',items_path,class: "btn btn-outline-dark" %></div></li>
-          <li><div class="ml-5"><%= link_to ' カート ',cart_items_path ,class: "btn btn-outline-dark" %></div></li>
+          <li><div class="ml-5"><%= link_to ' 商品一覧',   items_path,       class: "btn btn-outline-dark" %></div></li>
+          <li><div class="ml-5"><%= link_to ' カート ',    cart_items_path , class: "btn btn-outline-dark" %></div></li>
           <li><div class="ml-5"><%= link_to ' ログアウト', destroy_customer_session_path, method: :delete,class: "btn btn-outline-dark" %></div></li>
         <% else %>
           <li><%= link_to ' About',about_path,class: "btn btn-outline-dark" %></li>
-          <li><div class="ml-5"><%= link_to ' 商品一覧',items_path,class: "btn btn-outline-dark" %></div></li>
+          <li><div class="ml-5"><%= link_to ' 商品一覧', items_path,                    class: "btn btn-outline-dark" %></div></li>
           <li><div class="ml-5"><%= link_to ' 新規登録', new_customer_registration_path,class: "btn btn-outline-dark" %></div></li>
-          <li><div class="ml-5"><%= link_to ' ログイン', new_customer_session_path ,class: "btn btn-outline-dark" %></div></li>
+          <li><div class="ml-5"><%= link_to ' ログイン', new_customer_session_path ,    class: "btn btn-outline-dark" %></div></li>
         <% end %>
         </ul>
       </div>
